@@ -35,10 +35,11 @@ module counter(
     assign counter_out = count;
 
     always @(posedge clk or posedge rst) begin
-	if(rst)
+	if(rst) begin
 	  count <= 8'b0000_0000;
+	end
 	else begin
-	  count <= (enable == 0) ? count : (direction) ? (count + 1): (count - 1);
+	  count <= (enable == 0) ? count : (direction) ? (count + 1) : (count - 1);
 	end
     end  
       
