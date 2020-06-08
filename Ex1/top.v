@@ -15,7 +15,7 @@
 //
 //  inputs:
 //           a, b, func[3:0]
-//
+// 
 //  outputs:
 //           out
 //////////////////////////////////////////////////////////////////////////////////
@@ -32,5 +32,9 @@ module logicalunit(
     wire   out;
          
       //Todo: add you logic here
+    assign out = ((a == b) && a == 1'b0) ? func[0]:
+	   ((a == b) && a == 1'b1) ? func[3]:
+	   ((a != b) && a == 1'b0) ? func[1]:
+	   func[2];
 
 endmodule
