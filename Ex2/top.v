@@ -31,7 +31,6 @@ module mux(
     wire out;
 
     //Todo: define your logic here   
-    assign #5 out = (sel == 1'b0) ? a:
-	   b; 
+    assign #5 out = (sel) ? b: a; 
       
 endmodule
