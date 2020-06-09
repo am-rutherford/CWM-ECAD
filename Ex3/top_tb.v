@@ -21,7 +21,7 @@ module top_tb(
     reg direction;
     reg rst;
     reg enable;
-    reg [7:0] counter_out;
+    wire [7:0] counter_out;
     reg [7:0] counter_prev;
     reg err;
 
@@ -35,7 +35,7 @@ module top_tb(
 
 //Todo: User logic
     initial begin
-    counter_out = 0;
+    //counter_out = 0;
     counter_prev = counter_out;
     err = 0;
     rst = 0;
@@ -68,7 +68,7 @@ module top_tb(
     
 //Todo: Finish test, check for success
       initial begin
-        #500 
+        #100 
         if (err==0)
           $display("***TEST PASSED! :) ***");
         $finish;
