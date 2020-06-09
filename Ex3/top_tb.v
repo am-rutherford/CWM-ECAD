@@ -48,20 +48,20 @@ module top_tb(
 	  err = 1;
           $display("***TEST FAILED! counter==%d when reset==%d, enable==%d ***",counter_out,rst,enable);
 	end
-
+	//Test if counter goes in the correct direction
 	if (direction&(counter_out != (counter_prev+1)) | !direction&(counter_out != (counter_prev-1))) begin
 	  err = 1;
 	  $display("***TEST FAILED! counter==%d and counter_prev=%d when direction=%d ***",counter_out,counter_prev,direction);
 	end
-
-	if (!enable&(counter_out != counter_prev)) | (enable&(counter_out == counter_prev) begin
+	//Test if enable works correctly
+	if ((!enable)&(counter_out != counter_prev)) | (enable&(counter_out == counter_prev)) begin
 	  err = 1;
 	  $display("***TEST FAILED! counter==%d and counter_prev=%d when enable=%d ***",counter_out,counter_prev,enable);
 	end
       	counter_prev = counter_out;
       	if (counter_out == 0)
 	  direction = ~direction;
-      	end
+      	
       end
 
     end
