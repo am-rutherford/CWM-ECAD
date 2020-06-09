@@ -43,4 +43,6 @@ module counter(
 	end
     end  
       
+    initial counter_out = 10;
+
 endmodule

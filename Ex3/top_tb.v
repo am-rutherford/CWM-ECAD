@@ -36,19 +36,21 @@ module top_tb(
 //Todo: User logic
     initial begin
 
-    counter_prev = 0;
+    //counter_prev = 0;
     err = 0;
     rst = 0;
     direction = 1;
     enable = 1;
+    #6
+    forever begin
 
-      forever begin
-	#CLK_PERIOD
+	#(CLK_PERIOD-6)
       	//Test whether counter = 0 when reset = 1
 	if (rst&(counter_out != 0)) begin
 	  err = 1;
           $display("***TEST FAILED! counter==%d when reset==%d, enable==%d ***",counter_out,rst,enable);
 	end
+	#6
 	//Test if counter goes in the correct direction
 	if (direction&(counter_out != (counter_prev+1)) | !direction&(counter_out != (counter_prev-1))) begin
 	  err = 1;
@@ -59,17 +61,20 @@ module top_tb(
 	  err = 1;
 	  $display("***TEST FAILED! counter==%d and counter_prev=%d when enable=%d ***",counter_out,counter_prev,enable);
 	end
-      	counter_prev = counter_out;
-      	if (counter_out == 0)
-	  direction = ~direction;
-      	
-      end
+    $display("Value of counter==%d and counter_prev==%d",counter_out, counter_prev);
+    counter_prev = counter_out;
+    if (counter_out == 30)
+	direction = ~direction;
+
+
+
+    end      
 
     end
     
 //Todo: Finish test, check for success
       initial begin
-        #100 
+        #500 
         if (err==0)
           $display("***TEST PASSED! :) ***");
         $finish;
@@ -77,13 +82,7 @@ module top_tb(
 
 
 //Todo: Instantiate counter module
-    //counter top(clk, rst, enable, direction, counter_out);
-    counter top(
-    .rst (rst),
-    .enable (enable),
-    .direction (direction),
-    .clk (clk),
-    .counter_out (counter_out));
+    counter top(clk, rst, enable, direction, counter_out);
 
 
 endmodule 
