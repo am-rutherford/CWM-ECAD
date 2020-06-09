@@ -28,18 +28,18 @@ module counter(
     );
                     
     //Todo: add registers and wires, if needed
-    reg [7:0]count;
+
 
 
     //Todo: add user logic
-    assign counter_out = count;
 
-    always @(posedge clk or posedge rst) begin
+
+    always @(posedge clk) begin
 	if(rst) begin
-	  count <= 8'b0000_0000;
+	  counter_out <= 8'b0000_0000;
 	end
 	else begin
-	  count <= (enable == 0) ? count : (direction) ? (count + 1) : (count - 1);
+	  counter_out <= (enable == 0) ? counter_out : (direction) ? (counter_out + 1) : (counter_out - 1);
 	end
     end  
       
