@@ -76,7 +76,7 @@ module top_tb(
 
 
 //Todo: Instantiate counter module
-    counter count(clk, rst, enable, direction, counter_out);
+    counter top(clk, rst, enable, direction, counter_out);
 
 
 endmodule 
