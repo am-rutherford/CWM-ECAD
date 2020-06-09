@@ -1,7 +1,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 // Test bench for Exercise #3 - Up/Down counter
-// Student Name:
-// Date: 
+// Student Name: Alexander Rutherford
+// Date: 08/06/2020
 //
 // Description: A testbench module to test Ex3 - counter
 // Guidance: start with simple tests of the module (how should it react to each 
@@ -54,7 +54,7 @@ module top_tb(
 	  $display("***TEST FAILED! counter==%d and counter_prev=%d when direction=%d ***",counter_out,counter_prev,direction);
 	end
 	//Test if enable works correctly
-	if ((!enable)&(counter_out != counter_prev)) | (enable&(counter_out == counter_prev)) begin
+	if (((!enable)&(counter_out != counter_prev)) | (enable&(counter_out == counter_prev))) begin
 	  err = 1;
 	  $display("***TEST FAILED! counter==%d and counter_prev=%d when enable=%d ***",counter_out,counter_prev,enable);
 	end
@@ -68,7 +68,7 @@ module top_tb(
     
 //Todo: Finish test, check for success
       initial begin
-        #50 
+        #500 
         if (err==0)
           $display("***TEST PASSED! :) ***");
         $finish;
@@ -76,6 +76,7 @@ module top_tb(
 
 
 //Todo: Instantiate counter module
-count counter(clk, rst, enable, direction, counter_out);
+    counter count(clk, rst, enable, direction, counter_out);
+
 
 endmodule 
