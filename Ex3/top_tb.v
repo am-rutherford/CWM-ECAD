@@ -35,14 +35,15 @@ module top_tb(
 
 //Todo: User logic
     initial begin
-    //counter_out = 0;
-    counter_prev = counter_out;
+
+    counter_prev = 0;
     err = 0;
     rst = 0;
     direction = 1;
     enable = 1;
 
       forever begin
+	#CLK_PERIOD
       	//Test whether counter = 0 when reset = 1
 	if (rst&(counter_out != 0)) begin
 	  err = 1;
@@ -76,7 +77,13 @@ module top_tb(
 
 
 //Todo: Instantiate counter module
-    counter top(clk, rst, enable, direction, counter_out);
+    //counter top(clk, rst, enable, direction, counter_out);
+    counter top(
+    .rst (rst),
+    .enable (enable),
+    .direction (direction),
+    .clk (clk),
+    .counter_out (counter_out));
 
 
 endmodule 
