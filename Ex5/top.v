@@ -16,26 +16,35 @@
 
 module lights(
 	input clk,
-	output red,
-	output amber,
-	output green
+	output reg red,
+	output reg amber,
+	output reg green
 	);
-
-	// define wires and registers
-	reg [2:0] light
 	
 
 	// logic
-	assign red = light[2];
-	assign amber = light[1];
-	assign green = light[0];
-
 	always @(posedge clk) begin
-		case (light)
-		3'b100 : light <= 3'b110;
-		3'b110 : light <= 3'b001;
-		3'b001 : light <= 3'b001;
-		default : light <= 3'b100
+		case ({red, amber, green})
+		3'b100 : begin 
+			red = 1;
+			amber = 1;
+			green = 0;
+			end
+		3'b110 : begin 
+			red = 0;
+			amber = 0;
+			green = 1;
+			end
+		3'b001 : begin 
+			red = 0;
+			amber = 1;
+			green = 0;
+			end
+		default : begin 
+			red = 1;
+			amber = 0;
+			green = 0;
+			end
 		endcase
 
 	end
