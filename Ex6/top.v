@@ -1,7 +1,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 // Exercise #6 
-// Student Name:
-// Date: 
+// Student Name: Alexander Rutherford
+// Date: 10/06/2020
 //
 //
 //  Description: In this exercise, you need to design a multiplexer between a dice and traffic 
@@ -19,4 +19,26 @@
 //           result[2:0]
 //
 //////////////////////////////////////////////////////////////////////////////////
+`timescale 1ns / 100ps
 
+module top(
+	input clk,
+	input rst,
+	input button,
+	input sel,
+	output wire [2:0] result
+	); 
+
+	//wires & registers
+	wire [2:0] throw;
+	wire [2:0] light;
+		
+
+	//logic
+	lights light_out(clk, light[2], light[1], light[0]);
+	dice dice_out(clk, rst, button, throw);
+
+	mux choice(clk, throw, light, sel, result);
+
+
+endmodule
