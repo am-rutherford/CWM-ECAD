@@ -20,6 +20,8 @@ module top_tb(
 	reg err;
 	reg [2:0] a, b;
 	wire[5:0] result;
+	wire [31:0] rdata;
+	wire [31:0] araddr;
 
 	//create CLK
     	initial begin
@@ -39,7 +41,7 @@ module top_tb(
 	#CLK_PERIOD
 		forever begin
 		#CLK_PERIOD
-		$display("result = %b, when a=%b, and b=%b", result, a, b);
+		$display("result = %b, when a=%b, and b=%b, rdata = %b, araddr=%b", result, a, b, rdata, araddr);
 		if ((a==0&&b==0)&&(result!=0))begin
 			err = 1;
 			$display("*** Test Failed *** result = %b, when a=%b and b=%b", result, a, b);
@@ -61,7 +63,7 @@ module top_tb(
       	end
 	
 	//instance dice module
-    	top seven_multiplication(clk, a, b, read, result);
+    	top seven_multiplication(clk, rst, a, b, read, result, rdata, araddr);
 
 
 endmodule
