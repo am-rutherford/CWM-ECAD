@@ -31,7 +31,7 @@ module top(
 	assign result[2] = rdata[2];
 	assign result[3] = rdata[3];
 	assign result[4] = rdata[4];
-	assign result[5] = rdata[5]
+	assign result[5] = rdata[5];
 
 
 blk_mem_gen_0 blk_mem_gen_0 (
