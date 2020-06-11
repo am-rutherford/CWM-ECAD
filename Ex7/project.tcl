@@ -20,6 +20,12 @@ create_fileset -constrset -quiet constraints
 #set_property is_enabled false [get_files ${project_constraints}]
 
 #Todo: Add your IP here
+#create_ip -name MyIP -vendor Oxford -library UserIP -module_name mycalledip
+#set_property generate_synth_checkpoint false [get_files mycalledip.xci]
+#reset_target all [get_ips mycalledip]
+
+create_ip -name blk_mem_gen -vendor xilinx.com -library ip -version 8.4 -module_name mybram
+set_property -dict [list CONFIG.Component_Name {mybram}] [get_ips mybram]
 
 read_verilog "top.v"
 read_verilog "top_tb.v"
