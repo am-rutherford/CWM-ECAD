@@ -20,7 +20,7 @@ module top(
 	input [2:0] a,
 	input [2:0] b,
 	input read,
-	output [5:0] result,
+	output reg [5:0] result,
 	output [31:0] rdata,
 	output [31:0] araddr
 	);
@@ -33,7 +33,9 @@ module top(
 	wire [31:0] araddr;
 
 	assign araddr = {26'b0, a, b};
-	assign result = rdata[5:0];
+	always @(posedge clk) begin
+		result = #1 rdata[5:0];
+	end
 
 
 blk_mem_gen_0 blk_mem_gen_0 (

@@ -33,7 +33,7 @@ module top_tb(
 	initial begin
 	err = 0;
 	a = 1;
-	b = 3;
+	b = 1;
 	read = 1;
 	rst = 0;
 	#CLK_PERIOD
@@ -47,7 +47,7 @@ module top_tb(
 			$display("*** Test Failed *** result = %b, when a=%b and b=%b", result, a, b);
 		end
 
-		a = a + 1;
+		//a = a + 1;
 		
 		end
 
