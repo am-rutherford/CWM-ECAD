@@ -32,7 +32,7 @@ module top(
 	wire aaready;
 	wire [31:0] araddr;
 
-	assign araddr = {26'b0, a, b};
+	assign araddr = {24'b0, a, b, 2'b0};
 	always @(posedge clk) begin
 		result = #1 rdata[5:0];
 	end
